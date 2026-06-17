@@ -1,0 +1,15 @@
+[package]
+name = "elahe"
+version = "0.1.0"
+edition = "2024"
+
+[[bin]]
+name = "source"
+path = "./src/main.rs"
+
+[[bin]]
+name = "test"
+path = "./src/test.rs"
+
+[dependencies]
+crossterm = "0.29.0"
