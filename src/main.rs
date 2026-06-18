@@ -1,7 +1,10 @@
 mod buffer;
 pub use buffer::*;
+use std::io::stdout;
 
 fn main()
 {
-    buffer();
+    let mut stream = stdout();
+    let input: String = buffer(&mut stream);
+    println!("{:?}", input);
 }
