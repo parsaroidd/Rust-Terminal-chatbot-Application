@@ -7,9 +7,15 @@ edition = "2024"
 name = "source"
 path = "./src/main.rs"
 
+#Experimental Parts
+
 [[bin]]
-name = "test"
-path = "./src/test.rs"
+name = "buffer"
+path = "./test/Free_Buffer.rs"
+
+[[bin]]
+name = "box"
+path = "./test/Resizeable_box.rs"
 
 [dependencies]
 crossterm = "0.29.0"
