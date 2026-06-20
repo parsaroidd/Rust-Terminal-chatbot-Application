@@ -13,7 +13,27 @@ use std::io::Write;
 const MARGIN: (u16, u16, &str) = (5, 2, "&"); 
 const WARNING: (u16, u16) = (10, 10);
 
-pub fn buffer(stream: &mut std::io::Stdout, size: (u16, u16)) -> String
+
+#[derive(Debug, PartialEq)]
+pub enum Signal
+{
+    Exit,
+    Action, 
+    Normal,
+    Throw(u16, char), //Character of the button and place!(height) 
+}
+/*impl Signal
+{
+    pub fn extract_button(&self) -> (u16, char) 
+    {
+        self.Throw(x, y)
+    }
+}*/
+
+
+/*letting the main function the exiting!*/ 
+
+pub fn buffer(stream: &mut std::io::Stdout, size: (u16, u16)) -> (String, Signal) 
 {
     terminal::enable_raw_mode();
 
@@ -29,7 +49,7 @@ pub fn buffer(stream: &mut std::io::Stdout, size: (u16, u16)) -> String
         else if current_height == 0 { current_height = 1; }
         /* preventing a runtime panick, see moving keys */
 
-        if buffer.len() as u16 > size.0 * 3 - 19 
+        if buffer.len() as u16 > size.0 * 4  - 19 
         {
             buffer.pop(); 
         }
@@ -69,7 +89,7 @@ pub fn buffer(stream: &mut std::io::Stdout, size: (u16, u16)) -> String
                     {
                         execute!(stream, DisableMouseCapture);
                         terminal::disable_raw_mode();
-                        return buffer;
+                        return (buffer, Signal::Exit);
                     }
                     KeyCode::Backspace => 
                     {
@@ -84,7 +104,7 @@ pub fn buffer(stream: &mut std::io::Stdout, size: (u16, u16)) -> String
 
                         stream.queue(MoveTo(0, size.1));
 
-                        return buffer;
+                        return (buffer, Signal::Exit);
                     },
                     KeyCode::Delete =>
                     {
@@ -112,7 +132,7 @@ pub fn buffer(stream: &mut std::io::Stdout, size: (u16, u16)) -> String
                         /*You can navigate in terminal, but you cannot delete characters! for now*/
 
                     }, 
-                    _ => todo!(), 
+                    _ => {}, 
                 }
             },
             Event::Mouse(event) =>
