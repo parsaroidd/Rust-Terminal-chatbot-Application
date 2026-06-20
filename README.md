@@ -23,8 +23,8 @@ For now they don't have any diffrence but this application probably is going to 
 <img src="https://github.com/parsaroidd/Rust-Terminal-Elahe-Application/blob/main/img/image.png">
 ## 20th of June 2026, 
 
-I commited in a bach and didn't write the updates in the commmit, So I'll write it here! 
-for draw.rs, I just re aplied the logic to draw the main screen, in buffer I add a Signal Enum that actually tell main function to exit, and main is now a loop that renders a frame every two seconds.
+I commited in a batch and didn't write the updates in the commmit, So I'll write it here! 
+for draw.rs, I just re-aplied the logic to draw the main screen, in buffer I add a Signal Enum that actually tell main function to exit, and main is now a loop that renders a frame every two seconds.
 
-I just relized how buffer.rs is a mess, I mean the Key and Mouse match statements are readable, but not the code that is written on top of that, I must handle in the future, If I see that it needs to be.
+I just relized how buffer.rs is a mess, I mean the Key and Mouse match expressions are readable, but not the code that is written on top of that, I must handle in the future, If I see that it needs to be.
 
